@@ -1,0 +1,36 @@
+QDialog{
+background:white;
+}
+
+QPushButtonOperation{
+background-color:rgb(80, 188, 223, 0.5);
+color:black;
+border-radius:5px;
+}
+
+QPushButtonNumber{
+background-color:rgb(247, 230, 0, 0.5);
+color:black;
+border-radius:5px;
+}
+
+QLineEditCustom{
+background-color:white;
+color:black;
+}
+
+QLabelCustom{
+color:black;
+}
+
+QPushButtonNumber:hover{
+background-color:rgb(247, 230, 0, 1.0);
+color:black;
+border-radius:5px;
+}
+
+QPushButtonOperation:hover{
+background-color:rgb(80, 188, 223, 1.0);
+color:black;
+border-radius:5px;
+}
