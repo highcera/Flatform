@@ -10,7 +10,7 @@ import xlwings as xw
 import numpy as np
 import matplotlib as mpl
 import matplotlib.pyplot as plt
-# from scipy.interpolate import make_interp_spline
+from scipy.interpolate import make_interp_spline
 from scipy import interpolate
 
 font_name = mpl.font_manager.FontProperties(fname='C:/Windows/Fonts/malgun.ttf').get_name()
@@ -28,7 +28,6 @@ from pandasModel import *
 class Form(QMainWindow, Ui_MainWindow):
     def __init__(self):
         super().__init__()
-
         self.setupUi(self)
 
         self.actionOpen_2.triggered.connect(self.open_file)
@@ -40,11 +39,11 @@ class Form(QMainWindow, Ui_MainWindow):
         self.btnApply.clicked.connect(self.apply_lib)       
         self.btnGraph.clicked.connect(self.draw_graph)
         self.btnExcel.clicked.connect(self.make_excel)
+
         self.lblvdc.setHidden(True)
         self.lblratio.setHidden(True)
         self.lblvdc_name.setHidden(True)
         self.lblratio_name.setHidden(True)
-
 
         self.df = pd.DataFrame()
         self.lib = pd.DataFrame()
@@ -53,8 +52,6 @@ class Form(QMainWindow, Ui_MainWindow):
         # 모델식 UI 출력
         pixmap = QPixmap("equation.png")
         self.lbleqn.setPixmap(QPixmap(pixmap))
-
-
 
     def open_file(self):
         show_filter = "모든 파일(*.*);;엑셀파일(*.xls);; 엑셀파일(*.xlsx)"
