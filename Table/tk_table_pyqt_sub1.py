@@ -12,7 +12,7 @@ class Test:
         print(self.data)
        
     def read_data(self):
-        self.df=pd.read_csv("E:/Repo_Office/Flatform/Table/tips.csv")
+        self.df=pd.read_csv("C:/Flatform/Table/tips.csv")
         # print(self.df)
         return self.df
 
