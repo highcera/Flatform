@@ -4,14 +4,14 @@ import pandas as pd
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
-# import openpyxl
+import openpyxl
 import xlwings as xw
 
 import numpy as np
 import matplotlib as mpl
 import matplotlib.pyplot as plt
-# from scipy.interpolate import make_interp_spline
-# from scipy import interpolate
+from scipy.interpolate import make_interp_spline
+from scipy import interpolate
 
 font_name = mpl.font_manager.FontProperties(fname='C:/Windows/Fonts/malgun.ttf').get_name()
 mpl.rc('font', family=font_name)
@@ -32,7 +32,7 @@ class Form(QMainWindow, Ui_MainWindow):
 
         self.actionOpen_2.triggered.connect(self.open_file)
         
-        # activated[str]은 QComboBox의 옵션의 문자열을 받아 전달한다.  
+        #  activated[str]은 QComboBox의 옵션의 문자열을 받아 전달한다.  
         self.cboPow.activated[str].connect(self.filter_fir)
    #    self.cboDiel.textActivated.connect(self.filter_sec)
    #    self.cboFreq.textActivated.connect(self.filter_thr)
