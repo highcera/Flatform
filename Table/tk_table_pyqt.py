@@ -1,30 +1,38 @@
 # https://www.pythonguis.com/tutorials/qtableview-modelviews-numpy-pandas/
 
 import sys
-from PyQt5 import QtWidgets
+from PyQt5.QtWidgets import *
+from PyQt5 import QtCore, QtWidgets
 import pandas as pd
 from pandasModel2 import pandasModel
 
-class MainWindow(QtWidgets.QMainWindow):
+class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
+        self.tableLib = QTableView()
+        self.setCentralWidget(self.tableLib)
 
+        self.tableLib.setGeometry(QtCore.QRect(30, 140, 831, 331))
+      
         data = self.read_data()
-        print(data)
+        # print(data)
+        show = data.round(2)
 
-        self.table = QtWidgets.QTableView()
-        self.model = pandasModel(data)
-        self.table.setModel(self.model)
-
-        self.setCentralWidget(self.table)
+        self.make_tableLib(show)       
 
     def read_data(self):
         self.df=pd.read_csv("C:/Flatform/Table/tips.csv")
-        self.df2 = self.df.round(2)
    
-        return self.df2
+        return self.df
 
-app=QtWidgets.QApplication(sys.argv)
-window=MainWindow()
+    def make_tableLib(self, df):
+        model = pandasModel(df)
+        self.tableLib.setModel(model)
+        self.tableLib.resizeColumnsToContents()
+        self.tableLib.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+        self.tableLib.verticalHeader().setSectionResizeMode(QHeaderView.Stretch)
+
+app = QApplication(sys.argv)
+window = MainWindow()
 window.show()
 app.exec_()
