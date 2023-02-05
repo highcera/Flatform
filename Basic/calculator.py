@@ -45,7 +45,7 @@ class Main(QDialog):
         self.init_ui()
 
     def set_style(self):
-        with open("E:/Repo_Office/Flatform/Basic/update_style", 'r') as f:
+        with open('Basic/update_style.css', 'r') as f:
             self.setStyleSheet(f.read())
 
     def init_ui(self):

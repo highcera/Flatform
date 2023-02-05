@@ -19,8 +19,8 @@ class MainWindow(QMainWindow):
 
         self.setWindowTitle("My App")
 
-        # layout = QVBoxLayout()
-        layout = QHBoxLayout()
+        layout = QVBoxLayout()
+        # layout = QHBoxLayout()
 
         layout.addWidget(Color('red'))
         layout.addWidget(Color('green'))

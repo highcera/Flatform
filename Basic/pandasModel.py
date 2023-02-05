@@ -34,7 +34,7 @@ class pandasModel(QAbstractTableModel):
             return QVariant()
 
         if orientation == Qt.Horizontal:
-
             return self.df.columns[section]
+
         elif orientation == Qt.Vertical:
             return str(self.df.index[section])

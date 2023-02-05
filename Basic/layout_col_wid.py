@@ -10,6 +10,7 @@ from PyQt5.QtWidgets import (
     QTabWidget,
     QWidget,
 )
+from layout_colorwidget import Color
 
 COLORS = ['#053061', '#2166ac', '#4393c3', '#92c5de', '#d1e5f0', '#f7f7f7', '#fddbc7', '#f4a582', '#d6604d', '#b2182b', '#67001f']
 
@@ -24,7 +25,7 @@ class MainWindow(QMainWindow):
         tabs.setMovable(True)
 
         for n, color in enumerate(["red", "green", "blue", "yellow"]):
-            tabs.addTab(COLORS[n], color)
+            tabs.addTab(Color(color), color)
 
         self.setCentralWidget(tabs)
 

@@ -19,7 +19,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.setCentralWidget(self.table)
 
     def read_data(self):
-        self.df=pd.read_csv("C:/Flatform/Table/tips.csv")
+        self.df=pd.read_csv("Table/tips.csv")
         self.df2 = self.df.round(2)
    
         return self.df2

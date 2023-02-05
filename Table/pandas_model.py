@@ -5,9 +5,9 @@ from PyQt5.QtWidgets import QMainWindow, QApplication, QTableView
 from PyQt5.QtCore import QAbstractTableModel, Qt
 import pandas as pd
 
-class TableModel(QAbstractTableModel):
+class pandasModel(QAbstractTableModel):
     def __init__(self, data):
-        super(TableModel, self).__init__()
+        super(self).__init__()
         self._data = data
 
     def data(self, index, role):
