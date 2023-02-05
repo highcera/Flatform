@@ -15,7 +15,17 @@ class pandasModel(QAbstractTableModel):
     def data(self, index, role=Qt.DisplayRole):
         if not index.isValid() or role != Qt.DisplayRole:
             return QVariant()
-        return str(self.df.iloc[index.row(), index.column()])
+        else: 
+            # Get the raw value
+            value = self._data[index.row()][index.column()]
+            if isinstance(value, float):
+                # Render float to 2 dp
+                return "%.2f" % value
+
+            if isinstance(value, str):
+                # Render strings with quotes
+                return '"%s"' % value
+            return value
 
     def flags(self, index):
         return Qt.ItemIsEnabled | Qt.ItemIsSelectable | Qt.ItemIsEditable

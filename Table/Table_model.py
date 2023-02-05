@@ -11,18 +11,18 @@ class TableModel(QtCore.QAbstractTableModel):
         self._data = data
 
     def data(self, index, role):
-        # if role == Qt.DisplayRole:
+        if role == Qt.DisplayRole:
         #     # See below for the nested-list data structure.
         #     # .row() indexes into the outer list,
         #     # .column() indexes into the sub-list
-        #     return self._data[index.row()][index.column()]
+            return self._data[index.row()][index.column()]
 
-        # if role == Qt.TextAlignmentRole:
-        #     value = self._data[index.row()][index.column()]
+        if role == Qt.TextAlignmentRole:
+            value = self._data[index.row()][index.column()]
 
-        #     if isinstance(value, int) or isinstance(value, float):
-        #         # Align right, vertical middle.
-        #         return Qt.AlignCenter
+            if isinstance(value, int) or isinstance(value, float):
+                # Align right, vertical middle.
+                return Qt.AlignCenter
      
         if role == Qt.ForegroundRole:
             value = self._data[index.row()][index.column()]
