@@ -1,0 +1,171 @@
+flask를 사용해서 회원 이름, 성별, 나이를 입력, 수정, 삭제할 수 있는 파이썬 프로그램을 작성하되 DB는 csv 화일을 사용해줘
+
+from flask import Flask, render_template, request
+import csv
+
+app = Flask(__name__)
+
+# CSV 파일의 경로
+csv_path = 'data.csv'
+
+# CSV 파일에서 데이터를 읽는 함수
+def read_data():
+    with open(csv_path, newline='') as csvfile:
+        reader = csv.DictReader(csvfile)
+        data = [row for row in reader]
+    return data
+
+# CSV 파일에 데이터를 쓰는 함수
+def write_data(data):
+    with open(csv_path, 'w', newline='') as csvfile:
+        fieldnames = ['name', 'gender', 'age']
+        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+        writer.writeheader()
+        for row in data:
+            writer.writerow(row)
+
+# 메인 페이지를 표시하는 라우트
+@app.route('/')
+def index():
+    data = read_data()
+    return render_template('index.html', data=data)
+
+# 데이터를 추가하는 라우트
+@app.route('/add', methods=['POST'])
+def add():
+    name = request.form['name']
+    gender = request.form['gender']
+    age = request.form['age']
+    data = read_data()
+    data.append({'name': name, 'gender': gender, 'age': age})
+    write_data(data)
+    return 'Success'
+
+# 데이터를 수정하는 라우트
+@app.route('/update', methods=['POST'])
+def update():
+    name = request.form['name']
+    gender = request.form['gender']
+    age = request.form['age']
+    data = read_data()
+    for i, row in enumerate(data):
+        if row['name'] == name:
+            data[i] = {'name': name, 'gender': gender, 'age': age}
+            write_data(data)
+            return 'Success'
+    return 'Not Found'
+
+# 데이터를 삭제하는 라우트
+@app.route('/delete', methods=['POST'])
+def delete():
+    name = request.form['name']
+    data = read_data()
+    for i, row in enumerate(data):
+        if row['name'] == name:
+            del data[i]
+            write_data(data)
+            return 'Success'
+    return 'Not Found'
+
+if __name__ == '__main__':
+    app.run()
+
+위의 코드에서는 데이터를 저장하기 위해 CSV 파일을 사용합니다. 메인 페이지에서는 CSV 파일에서 데이터를 읽어와 테이블로 표시합니다. 데이터를 추가, 수정 및 삭제하기 위해서는 각각 '/add', '/update', '/delete' URL에 대한 라우트를 설정합니다. 이러한 라우트에서는 요청에서 데이터를 가져와 CSV 파일에 데이터를 쓰거나 읽습니다. 이 코드를 실행하면 Flask 애플리케이션이 실행되고, 사용자는 localhost:5000 주소로 액세스하여 데이터를 추가, 수정 및 삭제할 수 있습니다.
+
+
+delete 함수에서 delete 전에 confirm 할 수 있도록 수정해줘
+# 데이터를 삭제하는 라우트
+@app.route('/delete', methods=['POST'])
+def delete():
+    name = request.form['name']
+    data = read_data()
+    for i, row in enumerate(data):
+        if row['name'] == name:
+            return render_template('delete.html', name=name)
+    return 'Not Found'
+
+# 데이터를 실제로 삭제하는 라우트
+@app.route('/delete_confirm', methods=['POST'])
+def delete_confirm():
+    name = request.form['name']
+    data = read_data()
+    for i, row in enumerate(data):
+        if row['name'] == name:
+            del data[i]
+            write_data(data)
+            return 'Success'
+    return 'Not Found'
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Delete</title>
+  </head>
+  <body>
+    <p>Do you really want to delete "{{ name }}"?</p>
+    <form method="POST" action="{{ url_for('delete_confirm') }}">
+      <input type="hidden" name="name" value="{{ name }}">
+      <button type="submit">Confirm</button>
+      <a href="{{ url_for('index') }}">Cancel</a>
+    </form>
+  </body>
+</html>
+
+index.html도 작성해줘.
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Members</title>
+  </head>
+  <body>
+    <h1>Members</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Gender</th>
+          <th>Age</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in data %}
+          <tr>
+            <td>{{ row['name'] }}</td>
+            <td>{{ row['gender'] }}</td>
+            <td>{{ row['age'] }}</td>
+            <td><a href="{{ url_for('edit', name=row['name']) }}">Edit</a></td>
+            <td>
+              <form method="POST" action="{{ url_for('delete') }}">
+                <input type="hidden" name="name" value="{{ row['name'] }}">
+                <button type="submit">Delete</button>
+              </form>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <h2>Add Member</h2>
+    <form method="POST" action="{{ url_for('add') }}">
+      <label>Name:</label>
+      <input type="text" name="name" required>
+      <br>
+      <label>Gender:</label>
+      <input type="radio" name="gender" value="Male" required>Male
+      <input type="radio" name="gender" value="Female" required>Female
+      <br>
+      <label>Age:</label>
+      <input type="number" name="age" required>
+      <br>
+      <button type="submit">Add</button>
+    </form>
+  </body>
+</html>
+
+index.html 템플릿에서는 회원 정보를 표시하는 HTML 테이블을 렌더링합니다. data 매개변수에는 현재 데이터베이스에 저장된 모든 회원 정보가 포함되어 있습니다. 각각의 행은 for 루프를 사용하여 생성되며, 이름, 성별, 나이, 수정 및 삭제 링크가 포함됩니다.
+
+테이블 하단에는 "Add Member" 제목과 회원 정보를 추가하는 폼이 표시됩니다. 사용자는 이름, 성별, 나이를 입력한 후 "Add" 버튼을 클릭하여 새로운 회원 정보를 추가할 수 있습니다.

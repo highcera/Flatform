@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Delete</title>
+  </head>
+  <body>
+    <p>Do you really want to delete "{{ name }}"?</p>
+    <form method="POST" action="{{ url_for('delete_confirm') }}">
+      <input type="hidden" name="name" value="{{ name }}">
+      <button type="submit">Confirm</button>
+      <a href="{{ url_for('index') }}">Cancel</a>
+    </form>
+  </body>
+</html>
+

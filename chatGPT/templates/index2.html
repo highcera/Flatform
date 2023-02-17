@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Members</title>
+  </head>
+  <body>
+    <h1>Members</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Gender</th>
+          <th>Age</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in data %}
+          <tr>
+            <td>{{ row['name'] }}</td>
+            <td>{{ row['gender'] }}</td>
+            <td>{{ row['age'] }}</td>
+            <td><a href="{{ url_for('edit', name=row['name']) }}">Edit</a></td>
+            <td>
+              <form method="POST" action="{{ url_for('delete') }}">
+                <input type="hidden" name="name" value="{{ row['name'] }}">
+                <button type="submit">Delete</button>
+              </form>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <h2>Add Member</h2>
+    <form method="POST" action="{{ url_for('add') }}">
+      <label>Name:</label>
+      <input type="text" name="name" required>
+      <br>
+      <label>Gender:</label>
+      <input type="radio" name="gender" value="Male" required>Male
+      <input type="radio" name="gender" value="Female" required>Female
+      <br>
+      <label>Age:</label>
+      <input type="number" name="age" required>
+      <br>
+      <button type="submit">Add</button>
+    </form>
+  </body>
+</html>

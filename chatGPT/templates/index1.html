@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>CSV Data Management</title>
+</head>
+<body>
+	<h1>CSV Data Management</h1>
+	<table>
+		<tr>
+			<th>Name</th>
+			<th>Gender</th>
+			<th>Age</th>
+			<th>Action</th>
+		</tr>
+		{% for row in data %}
+			<tr>
+				<td>{{ row['name'] }}</td>
+				<td>{{ row['gender'] }}</td>
+				<td>{{ row['age'] }}</td>
+				<td>
+					<form method="POST" action="/update">
+						<input type="hidden" name="name" value="{{ row['name'] }}">
+						<input type="submit" value="Edit">
+					</form>
+					<form method="POST" action="/delete">
+						<input type="hidden" name="name" value="{{ row['name'] }}">
+						<input type="hidden" name="confirm" value="false">
+						<input type="button" value="Delete" onclick="confirmDelete('{{ row['name'] }}')">
+					</form>
+				</td>
+			</tr>
+		{% endfor %}
+	</table>
+	<form method="POST" action="/add">
+		<label for="name">Name:</label>
+		<input type="text" name="name" required>
+		<label for="gender">Gender:</label>
+		<input type="text" name="gender" required>
+		<label for="age">Age:</label>
+		<input type="number" name="age" required>
+		<input type="submit" value="Add">
+	</form>
+
+	<script>
+		function confirmDelete(name) {
+			if (confirm("Are you sure you want to delete " + name + "?")) {
+				document.getElementsByName('confirm')[0].value = 'true';
+				event.target.parentElement.submit();
+			}
+		}
+	</script>
+</body>
+</html>
