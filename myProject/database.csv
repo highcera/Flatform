@@ -1,0 +1,9 @@
+index,location,cleaness,built_in
+0,영통구,True,식기세척기
+1,용인시 처인구,False,세탁기
+2,매탄동,False,가스레인지
+3,권선구,False,의류건조기
+4,용인시 기흥구,True,식탁
+5,화성시 동탄구,True,식탁
+6,권선구 곡반정동,False,에어컨
+7,곡반정동,False,에어컨
