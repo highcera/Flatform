@@ -34,8 +34,8 @@ class Form(QMainWindow, Ui_MainWindow):
         
         #  activated[str]은 QComboBox의 옵션의 문자열을 받아 전달한다.  
         self.cboPow.activated[str].connect(self.filter_fir)
-   #    self.cboDiel.textActivated.connect(self.filter_sec)
-   #    self.cboFreq.textActivated.connect(self.filter_thr)
+        self.cboDiel.textActivated.connect(self.filter_sec)
+        self.cboFreq.textActivated.connect(self.filter_thr)
         self.btnApply.clicked.connect(self.apply_lib)       
         self.btnGraph.clicked.connect(self.draw_graph)
         self.btnExcel.clicked.connect(self.make_excel)
@@ -87,7 +87,6 @@ class Form(QMainWindow, Ui_MainWindow):
 
 
     def make_tableLib(self, df):
-
         model = pandasModel(df)
         self.tableLib.setModel(model)
         self.tableLib.resizeColumnsToContents()
@@ -103,13 +102,11 @@ class Form(QMainWindow, Ui_MainWindow):
         self.tableConst.verticalHeader().setSectionResizeMode(QHeaderView.Stretch)
 
     def filter_fir(self, txt):
-
         #다른 항목 초기화
         self.lblvdc.setHidden(True)
         self.lblratio.setHidden(True)
         self.lblvdc_name.setHidden(True)
         self.lblratio_name.setHidden(True)
-
 
         self.lblfreq.clear()
         self.lblac.clear()
@@ -126,7 +123,6 @@ class Form(QMainWindow, Ui_MainWindow):
         # 콤보박스로 원하는 조성 선택
         self.filtered = self.lib[ self.lib["조성"] == txt ]
 
-
         diel = list(set(self.filtered["유전율"]))
         diel = [x for x in diel if pd.isnull(x) == False]
         diel = [ str(x) for x in diel ]
@@ -136,14 +132,11 @@ class Form(QMainWindow, Ui_MainWindow):
         self.make_tableLib(filtered_show)
 
     def filter_sec(self, txt):
-
         # 다른 항목 초기화
         self.lblvdc.setHidden(True)
         self.lblratio.setHidden(True)
         self.lblvdc_name.setHidden(True)
         self.lblratio_name.setHidden(True)
-
-
 
         # 콤보박스로 원하는 유전율 선택
         self.filtered_sec = self.filtered[ self.filtered["유전율"] == int(txt) ]
@@ -159,16 +152,12 @@ class Form(QMainWindow, Ui_MainWindow):
         filtered_show = self.filtered_sec.drop(['vol_lev', '전압 (Vdc)', 'DF','주파수(kHz)', 'AC(V)', '전압유지시간', 'Aging 시간'], axis=1)
         self.make_tableLib(filtered_show)
 
-
-
     def filter_thr(self, txt):
-
         # 다른 항목 초기화
         self.lblvdc.setHidden(True)
         self.lblratio.setHidden(True)
         self.lblvdc_name.setHidden(True)
         self.lblratio_name.setHidden(True)
-
 
         # 콤보박스로 원하는 주파수 영역 선택
         self.filtered_thr = self.filtered_sec[ self.filtered_sec["DC-Bias 측정"] == txt ]
@@ -187,10 +176,7 @@ class Form(QMainWindow, Ui_MainWindow):
         filtered_show = self.filtered_thr.drop(['vol_lev', '전압 (Vdc)', 'DF','주파수(kHz)', 'AC(V)', '전압유지시간', 'Aging 시간'], axis=1)
         self.make_tableLib(filtered_show)
 
-
     def apply_lib(self):
-
-
         p = list(np.arange(0, 10.1, 0.1))
         o = list(np.arange(0, 16.1, 0.1))
         a = list(np.arange(0, 25.1, 0.1))
@@ -263,15 +249,12 @@ class Form(QMainWindow, Ui_MainWindow):
             ef[i] = np.round(ef[i], 2)
         self.fin.insert(len(self.fin.columns), '전계 (V/um)', ef)
 
-
-
         self.fin.drop(columns = ['vol_lev', 'DC-Bias 측정','DF','주파수(kHz)', 'AC(V)', '전압유지시간', 'Aging 시간'], inplace = True)
 
         # 선택한 기종에 따른 상수값 테이블 추출
         self.cst = pd.DataFrame(self.df.iloc[self.idx], columns = ['a', 'b', 'c', 'd', 'f'])
         self.cst.columns = ['a (증가율)', 'b (변곡점)', 'c (점근선 1)', 'd (점근선 2)', 'f (검정력)']
         self.const = [float(x) for x in self.cst.iloc[0].values]
-
 
         # 로지스틱 모델링식을 이용하여 용량변화율 계산 및 해당 칼럼 추가
         cap_pct = []
@@ -280,13 +263,11 @@ class Form(QMainWindow, Ui_MainWindow):
 
         self.fin.insert(len(self.fin.columns), '용량변화율 %', cap_pct)
 
-
         p_show = [0, 0.5, 1, 2, 3.15, 4, 5, 6.3, 8, 10]
         o_show = [0, 0.5, 1, 2, 3.15, 4, 5, 6.3, 8, 10, 16]
         a_show = [0, 0.5, 1, 2, 3.15, 4, 5, 6.3, 8, 10, 16, 25]
         l_show = [0, 0.5, 1, 2, 3.15, 4, 5, 6.3, 8, 10, 16, 25, 35]
         bce_show = [0, 0.5, 1, 2, 3.15, 4, 5, 6.3, 8, 10, 16, 25, 35, 40]
-
         
         # 필요용량 입력 값 이용하여 유효용량 계산 및 해당 칼럼 추가 (주파수 영역 구분)
         cap = self.CaplineEdit.text()
@@ -319,7 +300,6 @@ class Form(QMainWindow, Ui_MainWindow):
 
             self.make_tableLib(self.low_show)
 
-
         elif self.filtered_thr['DC-Bias 측정'][0] == '고주파':
             self.high = self.fin.copy()
             high_ratio = self.df['변화율'][self.idx].values[0]
@@ -351,15 +331,11 @@ class Form(QMainWindow, Ui_MainWindow):
                 self.highw_show = self.high_show[self.high_show['전압 (Vdc)'].isin(bce_show)]
 
             self.make_tableLib(self.high_show)
-
-
         self.make_tableConst(self.cst)
 
     def draw_graph(self):
-
         x = [float(a) for a in self.fin['전압 (Vdc)'].values]
         y = self.fin['용량변화율 %'].values
-
 
         xs = np.linspace(x[0], x[-1], 1000)
         f = interpolate.interp1d(x, y, kind = 'linear')
@@ -376,12 +352,10 @@ class Form(QMainWindow, Ui_MainWindow):
         plt.scatter(xp,yp, color = 'red')
         plt.plot(xs, ys)
 
-
         plt.xlabel('전압 (V)')
         plt.ylabel('용량변화율 %')
 
         plt.grid(True)
-
 
         plt.show()
 
