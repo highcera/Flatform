@@ -7,10 +7,12 @@ class LabelGrid(QWidget):
         
         # Initialize the label grid
         self.labels = [QLabel(str(i+1)) for i in range(100)]
+
         self.grid_layout = QHBoxLayout()
-        for label in self.labels:
-            self.grid_layout.addWidget(label)
-        self.setLayout(self.grid_layout)
+        self.startP = 0
+        self.update_show_labels()
+
+        # self.setLayout(self.grid_layout)
         
         # Initialize the buttons
         self.left_button = QPushButton('<')
@@ -37,17 +39,27 @@ class LabelGrid(QWidget):
         
     def shift_labels(self, shift):
         # Move the labels by the specified shift amount
-        new_labels = []
-        for i in range(100):
-            new_index = (i + shift) % 100
-            new_labels.append(self.labels[new_index])
-        self.labels = new_labels
-        self.grid_layout = QHBoxLayout()
-        for label in self.labels:
-            self.grid_layout.addWidget(label)
-        self.setLayout(self.grid_layout)
+        self.startP += shift
+        if self.startP < 0: 
+            self.startP = 0
+        elif self.startP > 75: 
+            self.startP = 75  
         
+        self.update_show_labels()  
+       
+        # self.labels = show_labels
+        # self.grid_layout = QHBoxLayout()
+        # for label in self.labels:
+        #     self.grid_layout.addWidget(label)
+        # self.setLayout(self.grid_layout)
 
+    def update_show_labels(self):
+        self.show_label=[]
+        for i, label in enumerate(self.labels[self.startP:self.startP+25]):
+            self.show_label.append(label)
+
+        self.grid_layout.addWidget(self.show_label)
+       
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     grid = LabelGrid()
