@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form</class>
+ <widget class="QWidget" name="Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>511</width>
+    <height>411</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>LineEditor</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout_4">
+   <item row="0" column="1">
+    <widget class="QGroupBox" name="input_mask_group">
+     <property name="title">
+      <string>Input_mask</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_3">
+      <item row="0" column="0">
+       <widget class="QLabel" name="inpug_mask_label">
+        <property name="text">
+         <string>Type: </string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QComboBox" name="input_mask_cb">
+        <item>
+         <property name="text">
+          <string>No mask</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Phone number</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>ISO date</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Lincese Key</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="1" column="0" colspan="2">
+       <widget class="QLineEdit" name="input_mask_le">
+        <property name="placeholderText">
+         <string>Palceholder Text</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="1" column="1">
+    <widget class="QGroupBox" name="access_group">
+     <property name="title">
+      <string>Access</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_6">
+      <item row="0" column="0">
+       <widget class="QLabel" name="access_label">
+        <property name="text">
+         <string>Type: </string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QComboBox" name="access_cb">
+        <item>
+         <property name="text">
+          <string>False</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>True</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="1" column="0" colspan="2">
+       <widget class="QLineEdit" name="access_le">
+        <property name="placeholderText">
+         <string>Placeholder Text</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <widget class="QGroupBox" name="validator_group">
+     <property name="title">
+      <string>validator</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_2">
+      <item row="0" column="0">
+       <widget class="QLabel" name="validator_label">
+        <property name="text">
+         <string>Type: </string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QComboBox" name="validator_cb">
+        <item>
+         <property name="text">
+          <string>No validator</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Integer validator</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Double validator</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="1" column="0" colspan="2">
+       <widget class="QLineEdit" name="validator_le">
+        <property name="placeholderText">
+         <string>Placeholder Text</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="2" column="0">
+    <widget class="QGroupBox" name="alignment_group">
+     <property name="title">
+      <string>Alignment</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_5">
+      <item row="0" column="0">
+       <widget class="QLabel" name="alignment_label">
+        <property name="text">
+         <string>Type: </string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QComboBox" name="alignment_cb">
+        <item>
+         <property name="text">
+          <string>Left</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Centered</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Right</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="1" column="0" colspan="2">
+       <widget class="QLineEdit" name="alignment_le">
+        <property name="placeholderText">
+         <string>Placeholder Text</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="0" column="0">
+    <widget class="QGroupBox" name="echo_group">
+     <property name="title">
+      <string>Echo</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="0" column="1">
+       <widget class="QComboBox" name="echo_cb">
+        <item>
+         <property name="text">
+          <string>Normal</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>No Echo</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Password</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>PasswordEchoOnEdit</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="1" column="0" colspan="2">
+       <widget class="QLineEdit" name="echo_le">
+        <property name="placeholderText">
+         <string>Placeholder Text</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0">
+       <widget class="QLabel" name="echo_label">
+        <property name="text">
+         <string>Mode: </string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
