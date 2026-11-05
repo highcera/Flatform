@@ -1,3 +1,5 @@
+# https://eggwhite0.tistory.com/87
+
 import sys
 from PyQt5.QtWidgets import *
 from PyQt5 import uic

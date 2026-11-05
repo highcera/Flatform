@@ -2,8 +2,6 @@ import sys, os
 from PyQt5.QtWidgets import QApplication, QMainWindow, QFileDialog
 import pandas as pd
 
-os.chdir('Table')
-
 GUI_FILE_NAME = 'MTable_dsn1'
 
 os.system('python -m PyQt5.uic.pyuic -x ' + GUI_FILE_NAME + '.ui -o ' + GUI_FILE_NAME + '.py')

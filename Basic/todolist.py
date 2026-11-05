@@ -19,7 +19,7 @@ class TodoDAO:
     def __init__(self):
         self.conn = None
     def connect(self):
-        self.conn = pymysql.connect(host='localhost',port=3306,user='aiuser',password='aipw',db='aidb')
+        self.conn = pymysql.connect(host='localhost',port=3306,user='root',password='dark##2993',db='ex')
     def disconnect(self):
         self.conn.close()
     def insertTodo(self, todo):
@@ -28,7 +28,7 @@ class TodoDAO:
         cur = self.conn.cursor()  #쿼리작성 
         sql = 'insert into todos(todo) values(%s)'
         cur.execute(sql,todo) #쿼리실행 
-        self.conn.commit()  #커밋!!  
+        self.conn.commit()
         self.disconnect() #접속종료 
     def updateTodo(self,no):
         #DB접속부터시작해서 저장할 수 있는 로직을 구현 
@@ -37,8 +37,7 @@ class TodoDAO:
         sql = 'update todos set end_date = current_timestamp() where no = %s'
         cur.execute(sql,no)
         self.conn.commit()
-        self.disconnect()
-        
+        self.disconnect()      
     def deleteTodo(self,no):
         self.connect()
         cur = self.conn.cursor()
@@ -156,17 +155,30 @@ class Menu:
             elif menu == 6:
                 break
 
-c = TodoDAO()
+# c = TodoDAO()
+
 #TodoDAO의 insertTodo 메서드가 잘 동작하는지 테스트!!! 
 # c.insertTodo('todoList 만들기!!')
+
 #TodoDAO의 updateTodo 메서드가 잘 동작하는지 테스트!!! 
-# c.updateTodo(4);
-# todos = c.selectTodos()
-# for todo in todos: 
-#     todo.showTodoInfo()
+# c.updateTodo(3)
+
+
 # todo = c.selectTodo(6)
 # todo.showTodoInfo()
 
-todos = c.selectTodosWithTodo('공부하기')
-for todo in todos:
-    todo.showTodoInfo()
+# todos = c.selectTodosWithTodo('만들기')
+# for todo in todos:
+#     todo.showTodoInfo()
+
+# c.deleteTodo(4)
+    
+# c.endTodo()
+
+# todos = c.selectTodos()
+# for todo in todos: 
+#     todo.showTodoInfo()
+            
+if __name__ == '__main__':
+    menu = Menu()
+    menu.run() 

@@ -4,13 +4,10 @@ from PyQt5.QtWidgets import *
 class MyApp(QWidget):
  
     def __init__(self):
- 
         super().__init__()
         self.initUI()
  
- 
     def initUI(self):
- 
         # QLabel 인스턴스인 lbl을 생성하고 문자열을 "NULL"로 초기화한다.
         self.lbl = QLabel("NULL", self)
         # 위치를 x = 60, y = 40으로 지정
