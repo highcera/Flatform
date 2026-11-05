@@ -3,10 +3,11 @@ from PyQt5.QtWidgets import QApplication, QMainWindow, QFileDialog
 from PyQt5.QtGui import QStandardItemModel, QStandardItem
 import pandas as pd
 
-os.chdir('myProject')
+# os.chdir('myProject')
 
-GUI_FILE_NAME = 'telephone'
+GUI_FILE_NAME = 'C:/Flatform/myProject/telephone'
 # C:\Flatform\myProject\telephone.ui
+
 os.system('python -m PyQt5.uic.pyuic -x ' + GUI_FILE_NAME + '.ui -o ' + GUI_FILE_NAME + '.py')
 
 from telephone import Ui_MainWindow
@@ -55,8 +56,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         # read_file.to_csv (r'Path where the CSV will be saved\File name.csv', index=None)
 
         return df
-# import pandas as pd
-# file = pd.read_csv('Boston_Housing.txt', delimiter = '\t')
+    
+import pandas as pd
+file = pd.read_csv('Boston_Housing.txt', delimiter = '\t')
+
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     ex = MainWindow()

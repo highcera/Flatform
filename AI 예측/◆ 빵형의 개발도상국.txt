@@ -1,0 +1,48 @@
+◆ 빵형의 개발도상국
+https://www.youtube.com/watch?v=sG_WeGbZ9A4
+
+딥러닝(LSTM)을 사용하여 주식 가격과 암호화폐의 시세를 예측하는 인공지능을 만들거예요.
+
+https://github.com/kairess/stock_crypto_price_prediction/blob/master/stock_samsung.ipynb
+
+Dependencies:
+- Python
+- numpy
+- Keras
+- pandas
+- matplotlib
+
+Dataset
+- Yahoo Finance: https://finance.yahoo.com
+- CoinMarketCap: https://coinmarketcap.com
+
+데이터사이언스
+https://www.youtube.com/playlist?list=PL-xmlFOn6TUKlWNQ1_jikNWCdRUO3MBJm
+
+★ 대한민국 전국 치킨 가격 데이터베이스
+Source code(Github):
+https://github.com/kairess/Korea-Chicken-Database
+
+kakao developers 
+https://developers.kakao.com/
+데이터수집기 939789
+REST API 키	2717863e0f967d83afc18fe429eac7e3
+
+★ 5분만에 데이터 사이언스 웹앱 만들기 튜토리얼 Streamlit
+https://www.youtube.com/watch?v=JLVB8ZUPojw&list=PL-xmlFOn6TUKlWNQ1_jikNWCdRUO3MBJm&index=5
+
+streamlit
+https://docs.kanaries.net/ko/tutorials/Streamlit/streamlit-vscode
+
+Source code(Github):
+https://github.com/kairess/streamlit-examples
+
+tensorflow 64bit에만 설치
+파이썬 32 / 64 동시 사용 방법
+https://flying1000duck.tistory.com/66#:~:text=32%EB%B9%84%ED%8A%B8%EC%99%80%2064%EB%B9%84%ED%8A%B8%20%ED%8C%8C%EC%9D%BC%EC%9D%84%20%EA%B0%81%EA%B0%81%20%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C%20%EB%B0%9B%EC%9D%80%20%EC%9D%B4%ED%9B%84%20%EC%84%A4%EC%B9%98%ED%95%9C%EB%8B%A4.,%EC%9E%85%EB%A0%A5%EC%8B%9C%2032%EB%B9%84%ED%8A%B8%EC%9D%98%20%ED%8C%8C%EC%9D%B4%EC%8D%AC%EC%9D%B4%20%EB%8F%99%EC%9E%91%ED%95%98%EB%8A%94%20%EA%B2%83%EC%9D%84%20%EB%B3%BC%20%EC%88%98%20%EC%9E%88%EB%8B%A4.
+
+◆ 위대한 개스피
+AI 주가예측 (feat. LSTM)
+https://www.youtube.com/watch?v=9haME49Rx_0&t=0s
+
+https://colab.research.google.com/drive/19n4qfs4D62VkFwah4Matqp_CPt5F8nzF#scrollTo=i1cYgpsRfTpz
